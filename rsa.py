@@ -25,6 +25,12 @@ def generate_keypair(bit_length):
     Returns (public_key, private_key).
     Each key is a tuple (exponent, n).
     """
+    # 1. Choose two large primes p and q
+    # 2. Compute n = p * q
+    # 3. Compute phi(n) = (p-1)*(q-1)
+    # 4. Choose e such that gcd(e, phi(n)) == 1
+    # 5. Compute d ≡ e⁻¹ mod phi(n)
+    # 6. Return (e, n), (d, n)
     def generate_prime_candidate(bits):
         return random.getrandbits(bits) | (1 << (bits - 1)) | 1  
     def find_prime(bits):
@@ -43,14 +49,6 @@ def generate_keypair(bit_length):
         e = random.randrange(3, phi_n, 2)
     d = modinv(e, phi_n)
     return ((e, n), (d, n))
-
-    # 1. Choose two large primes p and q
-    # 2. Compute n = p * q
-    # 3. Compute phi(n) = (p-1)*(q-1)
-    # 4. Choose e such that gcd(e, phi(n)) == 1
-    # 5. Compute d ≡ e⁻¹ mod phi(n)
-    # 6. Return (e, n), (d, n)
-
 # Encryption
 def encrypt(message, public_key):
     """
