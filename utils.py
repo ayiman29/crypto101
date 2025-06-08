@@ -1,33 +1,27 @@
 import random
 def gcd(a, b):
-    if b == 0:
-        return a
-    if a < b:
-        a, b = b, a
+    while b:
+        a, b = b, a % b
+    return a
     
-    rem = a % b
-    while rem != 0:
-        a = b        
-        b = rem     
-        rem = a % b  
     
-    return b 
-
-def extended_gcd(a, b):
-    if b == 0:
-        return a, 1, 0
-    else:
-        g, x1, y1 = extended_gcd(b, a % b)
-        x = y1
-        y = x1 - (a // b) * y1
-        return g, x, y
+def extended_gcd_iterative(a, b):
+    x0, x1 = 1, 0
+    y0, y1 = 0, 1
+    while b != 0:
+        q = a // b
+        a, b = b, a % b
+        x0, x1 = x1, x0 - q * x1
+        y0, y1 = y1, y0 - q * y1
+    return (a, x0, y0)
 
 def modinv(a, m):
-    g, x, y = extended_gcd(a, m)
+    g, x, y = extended_gcd_iterative(a, m)
     if g != 1:
         raise Exception('Modular inverse does not exist')
-    else:
-        return x % m
+    return x % m
+
+
 def modexp(base, exp, mod):
     result = 1
     base = base % mod 
@@ -67,3 +61,10 @@ def is_prime(n, k=5):
             return False  
     
     return True  
+
+def int_to_text(number):
+    byte_length = (number.bit_length() + 7) // 8
+    return number.to_bytes(byte_length, byteorder='big').decode('utf-8')
+
+def text_to_int(text):
+    return int.from_bytes(text.encode('utf-8'), byteorder='big')
