@@ -1,0 +1,77 @@
+# Crypto101 Python Implementations
+
+This repository contains my personal implementations and practice exercises of fundamental cryptographic algorithms and protocols in Python. The code is based on concepts from the book *Crypto101* and other resources, aimed at deepening my understanding of cryptography for my thesis work in cybersecurity.
+
+
+**N.B.:** All implementations are done manually from scratch without relying on external cryptographic libraries, to deepen understanding of the underlying algorithms and mathematics.
+
+---
+
+## Contents
+
+| File                     | Description                                          |
+|--------------------------|------------------------------------------------------|
+| `rsa.py`                 | Implementation of RSA encryption and decryption.    |
+| `rsa_signature.py`       | RSA digital signature scheme implementation.        |
+| `sha256.py`              | SHA-256 cryptographic hash function (custom implementation). |
+| `h_mac.py`               | HMAC (Hash-based Message Authentication Code) using SHA-256. |
+| `aes.py`                 | Not done yet.                                         |
+| `diffie_hellman.py`      | Not done yet.                                         |
+| `ecc.py`                 | Not done yet.                                         |
+| `ecdsa.py`               | Not done yet.                                         |
+| `elgamal.py`             | Not done yet.                                         |
+| `utils.py`               | Utility functions.                                    |
+
+---
+
+## Purpose
+
+This repo serves as my hands-on playground to:
+
+- Implement my cryptographic knowledge practically on python.
+- Develop a clear understanding of both the mathematical concepts and the coding.
+- Keep track of my learning progress(and enjoy the GitHub green boxes for a dopamine rush🤩)
+
+---
+
+## How to Use 
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/crypto101.git
+   cd crypto101
+   ```
+
+2. Run individual scripts to test implementations. For example:
+
+   ```bash
+   python sha256.py
+   python h_mac.py
+   ```
+
+3. Study the source code for detailed comments and explanations.
+
+---
+
+## My Learning Process
+
+* Learned the basics of cryptography from the book Crypto101 — an introductory guide to cryptography.
+* Asked ChatGPT to provide Python skeletons with step-by-step outlines, without explicit code.
+* Solved the coding problems myself, using online resources or ChatGPT for help when stuck.
+
+---
+
+## About
+
+* Author: Ayi (GitHub: \[yourusername])
+* Inspired by the book [*Crypto101*](https://crypto101.io/) — an introductory cryptography book freely available online.
+* Field of study: Cybersecurity (Thesis research focus)
+
+---
+
+Feel free to reach out or open issues if you find bugs or want to suggest improvements!
+
+---
+
+*Unhappy cryptography learning!* 🔐🚀
