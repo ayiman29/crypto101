@@ -64,7 +64,7 @@ This repo serves as my hands-on playground to:
 
 ## About
 
-* Author: Ayi (GitHub: \[yourusername])
+* Author: Me, duh! (GitHub: \ayiman29)
 * Inspired by the book [*Crypto101*](https://crypto101.io/) — an introductory cryptography book freely available online.
 * Field of study: Cybersecurity (Thesis research focus)
 
