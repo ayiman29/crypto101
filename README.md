@@ -11,16 +11,18 @@ This repository contains my personal implementations and practice exercises of f
 
 | File                     | Description                                          |
 |--------------------------|------------------------------------------------------|
-| `rsa.py`                 | Implementation of RSA encryption and decryption.    |
-| `rsa_signature.py`       | RSA digital signature scheme implementation.        |
-| `sha256.py`              | SHA-256 cryptographic hash function (custom implementation). |
-| `h_mac.py`               | HMAC (Hash-based Message Authentication Code) using SHA-256. |
-| `diffie_hellman.py`      | DH key exchange with safe prime generation and simulation. |
-| `aes.py`                 | Not done yet.                                         |
-| `ecc.py`                 | Not done yet.                                         |
-| `ecdsa.py`               | Not done yet.                                         |
-| `elgamal.py`             | Not done yet.                                         |
-| `utils.py`               | Utility functions.                                    |
+| [`rsa.py`](https://github.com/ayiman29/crypto101/blob/main/rsa.py)                 | Implementation of RSA encryption and decryption.    |
+| [`rsa_signature.py`](https://github.com/ayiman29/crypto101/blob/main/rsa_signature.py)       | RSA digital signature scheme implementation.        |
+| [`sha256.py`](https://github.com/ayiman29/crypto101/blob/main/sha256.py)              | SHA-256 cryptographic hash function (custom implementation). |
+| [`h_mac.py`](https://github.com/ayiman29/crypto101/blob/main/h_mac.py)               | HMAC (Hash-based Message Authentication Code) using SHA-256. |
+| [`diffie_hellman.py`](https://github.com/ayiman29/crypto101/blob/main/diffie_hellman.py)      | DH key exchange with safe prime generation and simulation. |
+| [`aes.py`](https://github.com/ayiman29/crypto101/blob/main/aes.py)                 | Not done yet.                                         |
+| [`ecc.py`](https://github.com/ayiman29/crypto101/blob/main/ecc.py)                 | Not done yet.                                         |
+| [`ecdsa.py`](https://github.com/ayiman29/crypto101/blob/main/ecdsa.py)               | Not done yet.                                         |
+| [`elgamal.py`](https://github.com/ayiman29/crypto101/blob/main/elgamal.py)             | Not done yet.                                         |
+| [`utils.py`](https://github.com/ayiman29/crypto101/blob/main/utils.py)               | Utility functions.                                    |
+
+
 
 ---
 
