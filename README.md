@@ -15,8 +15,8 @@ This repository contains my personal implementations and practice exercises of f
 | `rsa_signature.py`       | RSA digital signature scheme implementation.        |
 | `sha256.py`              | SHA-256 cryptographic hash function (custom implementation). |
 | `h_mac.py`               | HMAC (Hash-based Message Authentication Code) using SHA-256. |
+| `diffie_hellman.py`      | DH key exchange with safe prime generation and simulation. |
 | `aes.py`                 | Not done yet.                                         |
-| `diffie_hellman.py`      | Not done yet.                                         |
 | `ecc.py`                 | Not done yet.                                         |
 | `ecdsa.py`               | Not done yet.                                         |
 | `elgamal.py`             | Not done yet.                                         |
