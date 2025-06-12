@@ -1,3 +1,6 @@
+# aes.py (With Diffie Hellman key exchange)
+from diffie_hellman import generate_private_key, compute_public_key, compute_shared_secret, p_2048, g_2048
+import hashlib
 class AES:
     def __init__(self, key: bytes):
         assert len(key) == 16, "Only AES-128 supported (16-byte key)"
@@ -211,9 +214,10 @@ class AES:
             0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D,
         ]
 
+
 BLOCK_SIZE = 16
 
-def pkcs7_pad(data: bytes) -> bytes:
+def pkcs7_pad(data,  block_size=BLOCK_SIZE):
     pad_len = BLOCK_SIZE - (len(data) % BLOCK_SIZE)
     return data + bytes([pad_len] * pad_len)
 
@@ -254,4 +258,5 @@ if __name__ == "__main__":
     # Remove padding after decrypting
     decrypted_str = pkcs7_unpad(decrypted).decode('utf-8')
     print("Decrypted:", decrypted_str)
+
 
