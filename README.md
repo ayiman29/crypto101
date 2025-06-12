@@ -77,3 +77,8 @@ Feel free to reach out or open issues if you find bugs or want to suggest improv
 ---
 
 *Unhappy cryptography learning!* 🔐🚀
+
+---
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=18fPtry5wQwo76VxF7sAxDFefASLN5ozD" alt="Reference Image" width="700">
+</p>
