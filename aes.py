@@ -1,4 +1,4 @@
-# aes.py (With Diffie Hellman key exchange)
+# aes.py 
 from diffie_hellman import generate_private_key, compute_public_key, compute_shared_secret, p_2048, g_2048
 import hashlib
 class AES:
