@@ -18,7 +18,7 @@ This repository contains my personal implementations and practice exercises of f
 | [`diffie_hellman.py`](https://github.com/ayiman29/crypto101/blob/main/diffie_hellman.py)      | DH key exchange with safe prime generation and simulation. |
 | [`aes.py`](https://github.com/ayiman29/crypto101/blob/main/aes.py)                 | AES block cipher implementation with block-level encryption and decryption functions. |
 | [`dh_aes_sha256.py`](https://github.com/ayiman29/crypto101/blob/main/dh_aes_sha256.py)   | Demonstration of Diffie-Hellman key exchange, custom SHA-256 hashing, and AES encryption/decryption working together. |
-| [`ecc.py`](https://github.com/ayiman29/crypto101/blob/main/ecc.py)                 | Not done yet.                                         |
+| [`ecc.py`](https://github.com/ayiman29/crypto101/blob/main/ecc.py)                 | Elliptic Curve Cryptography implementation including point operations, key generation, encryption, and decryption. |
 | [`ecdsa.py`](https://github.com/ayiman29/crypto101/blob/main/ecdsa.py)               | Not done yet.                                         |
 | [`elgamal.py`](https://github.com/ayiman29/crypto101/blob/main/elgamal.py)             | Not done yet.                                         |
 | [`utils.py`](https://github.com/ayiman29/crypto101/blob/main/utils.py)               | Utility functions.                                    |
