@@ -19,8 +19,8 @@ This repository contains my personal implementations and practice exercises of f
 | [`aes.py`](https://github.com/ayiman29/crypto101/blob/main/aes.py)                 | AES block cipher implementation with block-level encryption and decryption functions. |
 | [`dh_aes_sha256.py`](https://github.com/ayiman29/crypto101/blob/main/dh_aes_sha256.py)   | Demonstration of Diffie-Hellman key exchange, custom SHA-256 hashing, and AES encryption/decryption working together. |
 | [`ecc.py`](https://github.com/ayiman29/crypto101/blob/main/ecc.py)                 | Elliptic Curve Cryptography implementation including point operations, key generation, encryption, and decryption. |
-| [`ecdsa.py`](https://github.com/ayiman29/crypto101/blob/main/ecdsa.py)               | Not done yet.                                         |
-| [`elgamal.py`](https://github.com/ayiman29/crypto101/blob/main/elgamal.py)             | Not done yet.                                         |
+| [`ecdsa.py`](https://github.com/ayiman29/crypto101/blob/main/ecdsa.py) | Implementation of the Elliptic Curve Digital Signature Algorithm (ECDSA), including key pair generation, signing, and signature verification using custom elliptic curve parameters. |
+| [`elgamal.py`](https://github.com/ayiman29/crypto101/blob/main/elgamal.py) | Implementation of ElGamal public-key encryption scheme including key generation, encryption, and decryption. |
 | [`utils.py`](https://github.com/ayiman29/crypto101/blob/main/utils.py)               | Utility functions.                                    |
 
 
