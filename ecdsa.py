@@ -1,28 +1,110 @@
+from sha256 import sha256
+from utils import modinv
+import secrets
+from ecc import EllipticCurve 
+
 class ECDSA:
     def __init__(self, curve_params):
-        # Initialize curve parameters (e.g., prime p, curve coefficients a, b, base point G, order n)
-        pass
+        self.p = curve_params['p']
+        self.a = curve_params['a']
+        self.b = curve_params['b']
+        self.G = curve_params['G']
+        self.n = curve_params['n']
+        self.curve = EllipticCurve(self.a, self.b, self.p)
 
     def generate_keypair(self):
         # Generate a private key (random integer in [1, n-1])
         # Compute the public key as the scalar multiplication of the base point G by the private key
-        pass
+        private_key = secrets.randbelow(self.n - 1) + 1  
+        public_key = self.curve.scalar_mult(private_key, self.G)
+        return private_key, public_key
 
     def sign(self, message, private_key):
-        # 1. Hash the message using a secure hash function (e.g., SHA-256)
-        # 2. Generate a random per-message nonce k in [1, n-1]
-        # 3. Compute the curve point R = k * G
-        # 4. Calculate r = x-coordinate of R modulo n
-        # 5. Compute s = k^(-1) * (hash + r * private_key) modulo n
-        # 6. Return the signature (r, s)
-        pass
+        if isinstance(message, str):
+            message = message.encode()
+
+        e = int(sha256(message), 16)
+
+        while True:
+            k = secrets.randbelow(self.n - 1) + 1
+            x, _ = self.curve.scalar_mult(k, self.G)
+            r = x % self.n
+            if r == 0:
+                continue
+
+            try:
+                k_inv = modinv(k, self.n)
+            except Exception:
+                continue
+
+            s = (k_inv * (e + r * private_key)) % self.n
+            if s == 0:
+                continue
+
+            return (r, s)
+
 
     def verify(self, message, signature, public_key):
-        # 1. Hash the message using the same hash function
-        # 2. Extract r and s from the signature
-        # 3. Check that r and s are in the valid range (1 to n-1)
-        # 4. Compute w = s^(-1) modulo n
-        # 5. Compute u1 = hash * w modulo n and u2 = r * w modulo n
-        # 6. Compute the curve point X = u1 * G + u2 * public_key
-        # 7. The signature is valid if r == x-coordinate of X modulo n
-        pass
+        if isinstance(message, str):
+            message = message.encode()
+
+        r, s = signature
+        if not (1 <= r < self.n) or not (1 <= s < self.n):
+            return False
+
+        e = int(sha256(message), 16)
+        try:
+            s_inv = modinv(s, self.n)
+        except Exception:
+            return False
+
+        u1 = (e * s_inv) % self.n
+        u2 = (r * s_inv) % self.n
+
+        point = self.curve.point_add(
+            self.curve.scalar_mult(u1, self.G),
+            self.curve.scalar_mult(u2, public_key)
+        )
+
+        if point is None:
+            return False
+
+        x, _ = point
+        return (r % self.n) == (x % self.n)
+
+
+if __name__ == "__main__":
+    # Example curve parameters (secp192k1-like small example, just for testing)
+    curve_params = {
+        'p': 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFEE37,
+        'a': 0,
+        'b': 3,
+        'G': (
+            0xDB4FF10EC057E9AE26B07D0280B7F4341DA5D1B1EAE06C7D,
+            0x9B2F2F6D9C5628A7844163D015BE86344082AA88D95E2F9D
+        ),
+        'n': 0xFFFFFFFFFFFFFFFFFFFFFFFE26F2FC170F69466A74DEFD8D,
+    }
+
+    ecdsa = ECDSA(curve_params)
+
+    # Generate keys
+    private_key, public_key = ecdsa.generate_keypair()
+    print(f"Private Key: {private_key}")
+    print(f"Public Key: {public_key}")
+
+    message = "BABYLON WAGES WAR ON BABYLON"
+    print(f"Message: {message}")
+
+    # Sign the message
+    signature = ecdsa.sign(message, private_key)
+    print(f"Signature: {signature}")
+
+    # Verify the signature
+    valid = ecdsa.verify(message, signature, public_key)
+    print(f"Signature valid? {valid}")
+
+    # Test invalid signature (tamper with signature)
+    bad_signature = (signature[0], (signature[1] + 1) % curve_params['n'])
+    invalid = ecdsa.verify(message, bad_signature, public_key)
+    print(f"Tampered Signature valid? {invalid}")
