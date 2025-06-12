@@ -7,8 +7,6 @@ This module implements the SHA-256 cryptographic hash function.
 You will fill in the actual algorithm steps.
 """
 
-import struct
-
 # Constants (first 32 bits of the fractional parts of the cube roots of the first 64 primes)
 K = [
     0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
