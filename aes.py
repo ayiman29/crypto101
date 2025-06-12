@@ -211,15 +211,47 @@ class AES:
             0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D,
         ]
 
-# Usage example:
+BLOCK_SIZE = 16
+
+def pkcs7_pad(data: bytes) -> bytes:
+    pad_len = BLOCK_SIZE - (len(data) % BLOCK_SIZE)
+    return data + bytes([pad_len] * pad_len)
+
+def pkcs7_unpad(data: bytes) -> bytes:
+    pad_len = data[-1]
+    if pad_len < 1 or pad_len > BLOCK_SIZE:
+        raise ValueError("Invalid padding")
+    # Verify all the padding bytes are correct
+    if data[-pad_len:] != bytes([pad_len] * pad_len):
+        raise ValueError("Invalid padding")
+    return data[:-pad_len]
 
 if __name__ == "__main__":
     key = bytes.fromhex('2b7e151628aed2a6abf7158809cf4f3c')
-    plaintext = bytes.fromhex('3243f6a8885a308d313198a2e0370734')
+
+    plaintext_str = input()
+    plaintext_bytes = plaintext_str.encode('utf-8')
+
+    # Pad plaintext properly
+    padded_plaintext = pkcs7_pad(plaintext_bytes)
 
     aes = AES(key)
-    encrypted = aes.encrypt_block(plaintext)
+
+    # Encrypt block by block
+    encrypted = b''
+    for i in range(0, len(padded_plaintext), BLOCK_SIZE):
+        block = padded_plaintext[i:i+BLOCK_SIZE]
+        encrypted += aes.encrypt_block(block)
+
     print("Ciphertext:", encrypted.hex())
 
-    decrypted = aes.decrypt_block(encrypted)
-    print("Decrypted:", decrypted.hex())
+    # Decrypt block by block
+    decrypted = b''
+    for i in range(0, len(encrypted), BLOCK_SIZE):
+        block = encrypted[i:i+BLOCK_SIZE]
+        decrypted += aes.decrypt_block(block)
+
+    # Remove padding after decrypting
+    decrypted_str = pkcs7_unpad(decrypted).decode('utf-8')
+    print("Decrypted:", decrypted_str)
+
